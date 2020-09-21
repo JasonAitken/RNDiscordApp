@@ -1,0 +1,207 @@
+import * as React from 'react';
+import { Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as firebase from 'firebase';
+
+function HomeScreen({ navigation }) {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Home!</Text>
+            <Button
+                title="Go to Commands"
+                onPress={() => navigation.navigate('Commands')}
+            />
+        </View>
+    );
+}
+function CommandsScreen() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>My Commands!</Text>
+        </View>
+    );
+}
+function ServersScreen() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>My Servers!</Text>
+        </View>
+    );
+}
+function ImagesScreen() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>My Images!</Text>
+        </View>
+    );
+}
+
+function SendScreen() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Send Message!</Text>
+        </View>
+    );
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+    return (
+        <NavigationContainer>
+            <Tab.Navigator>
+                <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Screen name="Commands" component={CommandsScreen} />
+                <Tab.Screen name="Servers" component={ServersScreen} />
+                <Tab.Screen name="Images" component={ImagesScreen} />
+                <Tab.Screen name="Send Message" component={SendScreen} />
+            </Tab.Navigator>
+        </NavigationContainer>
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react'
+import {
+    StyleSheet,
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    Button
+} from 'react-native'
+import { saveData, getServers, clearStorage, addServer } from '../States/ServerState'
+import AsyncStorage from '@react-native-community/async-storage'
+
+
+
+export default function MyServers(props) {
+    const [serverName, setServerName] = useState('')
+    const [serverUrl, setServerUrl] = useState('')
+    //const [servers, setServers] = useState(readData())
+
+    // ...
+    return (
+        <View >
+            <View >
+                <Text >My Servers</Text>
+            </View>
+            <View >
+                <Text>Server</Text>
+                <TextInput
+
+                    placeholder="Server Name"
+                    onChangeText={(text) => setServerName(text)}
+                />
+                <TextInput
+
+                    placeholder="Server URL (webHook)"
+                    onChangeText={(text) => setServerUrl(text)}
+                />
+
+                <Text >Servers size {getServers().length}</Text>
+                <Button
+                    title="Add Server"
+                    onPress={() => {
+                        let servers = [];
+                        //tempServers[servers.length] = { name: serverName, URL: serverUrl };
+                        
+                        servers[servers.length] = { name: serverName, URL: serverUrl };
+                        addServer('@save_servers', servers);
+                        console.log(getServers()[0].name);
+                    }
+                    }
+                />
+                <Button
+                    title="clear Server"
+                    onPress={() => {
+                        clearStorage();
+                    }
+                    }
+                />
+
+            </View>
+        </View>
+    )
+
+    useEffect(() => {
+        getServers()
+    }, [])
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    /*useEffect(() => {
+        const usersRef = firebase.firestore().collection('users');
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                usersRef
+                    .doc(user.uid)
+                    .get()
+                    .then((document) => {
+                        const userData = document.data()
+                        setLoading(false)
+                        setUser(userData)
+                    })
+                    .catch((error) => {
+                        setLoading(false)
+                    });
+            } else {
+                setLoading(false)
+            }
+        });
+    }, []); */
+}
+
+
+
+/*<NavigationContainer>
+
+            <Tab.Navigator>
+                {user ? (
+                    <Tab.Screen name="Commands">
+                        {props => <MyCommands {...props} extraData={user} />}
+                    </Tab.Screen>
+                ) : (
+                        <>
+                            <Tab.Screen name="Login" component={LoginScreen} />
+                            <Tab.Screen name="Registration" component={RegistrationScreen} />
+
+                            <Tab.Screen name="Commands" component={MyCommands} />
+                            <Tab.Screen name="Servers" component={MyServers} />
+                            <Tab.Screen name="Images" component={MyImages} />
+                            <Tab.Screen name="Send Message" component={SendMessage} />
+                        </>
+                    )}
+            </Tab.Navigator>
+        </NavigationContainer>*/

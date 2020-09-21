@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "336729147501",
+    "firebase_url": "https://rndiscordapp.firebaseio.com",
+    "project_id": "rndiscordapp",
+    "storage_bucket": "rndiscordapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336729147501:android:52725b8343785dec945764",
+        "android_client_info": {
+          "package_name": "com.RADiscordApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336729147501-5vjpnb57ppaeki51f0rae7qdmcu0g56m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVceHsx3rwY1zBBRysBeZdT2Mxtx_TBDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336729147501-5vjpnb57ppaeki51f0rae7qdmcu0g56m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
